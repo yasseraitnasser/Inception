@@ -1,6 +1,6 @@
 FROM debian:bookworm
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
     nginx openssl && rm -rf /var/lib/apt/lists/*
 
 COPY ssl/certs/server.crt /etc/ssl/certs/server.crt
