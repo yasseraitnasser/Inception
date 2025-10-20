@@ -13,7 +13,7 @@ services:
   wordpress:
     build: ./requirements/wordpress
     volumes:
-      - ./requirements/wordpress:/var/www/html
+      - wp_data:/var/www/html
     expose:
       - "9000"
     env_file:
@@ -42,3 +42,4 @@ networks:
 
 volumes:
   db_data:
+  wp_data:

@@ -24,9 +24,7 @@ mysql -e "FLUSH PRIVILEGES;"
 
 mysqladmin shutdown > /dev/null
 
-exec mariadbd-safe
-
-# exec mariadbd --user=mysql --datadir=/var/lib/mysql --bind-address=0.0.0.0
+exec mariadbd --user=mysql --datadir=/var/lib/mysql --bind-address=0.0.0.0
 
 # #!/bin/bash
 # set -e
