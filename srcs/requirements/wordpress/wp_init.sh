@@ -23,7 +23,7 @@ wp config create \
 echo "Installing WordPress..."
 wp core install \
     --path="$WP_PATH" \
-    --url="$WP_URL" \
+    --url="https://$WP_URL" \
     --title="$WP_TITLE" \
     --admin_user="$WP_ADMIN" \
     --admin_password="$WP_ADMIN_PASSWORD" \
