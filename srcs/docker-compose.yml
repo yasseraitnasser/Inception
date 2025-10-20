@@ -10,6 +10,7 @@ services:
       - wordpress
     networks:
       - backend
+    restart: unless-stopped
 
   wordpress:
     build: ./requirements/wordpress
