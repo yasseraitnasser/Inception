@@ -29,6 +29,14 @@ wp core install \
     --admin_password="$WP_ADMIN_PASSWORD" \
     --admin_email="$WP_ADMIN_EMAIL" \
     --allow-root > /dev/null
+
+echo "Adding user..."
+wp user create \
+	"$WP_USER" "$WP_USER_EMAIL" \
+	--user_pass="$WP_USER_PASSWORD" \
+	--role="author" \
+	--allow-root > /dev/null
+
 echo "WordPress installation complete!"
 
 chown -R www-data:www-data "$WP_PATH"
