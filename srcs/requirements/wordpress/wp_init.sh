@@ -33,6 +33,7 @@ wp core install \
 echo "Adding user..."
 wp user create \
 	"$WP_USER" "$WP_USER_EMAIL" \
+	--path="$WP_PATH" \
 	--user_pass="$WP_USER_PASSWORD" \
 	--role="author" \
 	--allow-root > /dev/null
