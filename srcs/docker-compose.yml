@@ -24,6 +24,7 @@ services:
       - .env
     depends_on:
       - mariadb
+      - redis
     networks:
       - backend
     restart: always
@@ -48,6 +49,13 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "9090:9090"
+    networks:
+      - backend
+    restart: always
+
+  redis:
+    build: ./requirements/bonus/redis
+    image: redis
     networks:
       - backend
     restart: always

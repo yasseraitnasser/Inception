@@ -20,6 +20,11 @@ wp config create \
     --dbhost="$DB_HOST" \
     --allow-root > /dev/null
 
+echo "Configuring Redis cache..."
+wp config set WP_REDIS_HOST redis --allow-root --path="$WP_PATH"
+wp config set WP_REDIS_PORT 6379 --raw --allow-root --path="$WP_PATH"
+wp config set WP_CACHE true --raw --allow-root --path="$WP_PATH"
+
 echo "Installing WordPress..."
 wp core install \
     --path="$WP_PATH" \
@@ -37,6 +42,10 @@ wp user create \
 	--user_pass="$WP_USER_PASSWORD" \
 	--role="author" \
 	--allow-root > /dev/null
+
+echo "Installing Redis Object cache plugin..."
+wp plugin install redis-cache --activate --allow-root --path="$WP_PATH" > /dev/null
+wp redis enable --allow-root --path="$WP_PATH" > /dev/null
 
 echo "WordPress installation complete!"
 
