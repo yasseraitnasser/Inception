@@ -10,7 +10,7 @@ services:
       - wordpress
     networks:
       - backend
-    restart: unless-stopped
+    restart: always
 
   wordpress:
     build: ./requirements/wordpress
@@ -25,7 +25,7 @@ services:
       - mariadb
     networks:
       - backend
-    restart: unless-stopped
+    restart: always
 
   mariadb:
     build: ./requirements/mariadb
@@ -38,7 +38,7 @@ services:
       - "3306"
     networks:
       - backend
-    restart: unless-stopped
+    restart: always
 
   adminer:
     build: ./requirements/bonus/adminer
@@ -46,10 +46,27 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     ports:
+      - "9090:9090"
+    networks:
+      - backend
+    restart: always
+
+  cadviser:
+    build: ./requirements/bonus/cadviser
+    image: cadviser
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
       - "8080:8080"
     networks:
       - backend
-    restart: unless-stopped
+    env_file:
+      - .env
+    restart: always
 
 networks:
   backend:
