@@ -40,6 +40,17 @@ services:
       - backend
     restart: unless-stopped
 
+  adminer:
+    build: ./requirements/bonus/adminer
+    image: adminer
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    restart: unless-stopped
+
 networks:
   backend:
     driver: bridge
