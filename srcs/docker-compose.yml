@@ -77,6 +77,13 @@ services:
       - .env
     restart: always
 
+  website:
+    build: ./requirements/bonus/website
+    image: website
+    ports:
+      - "6060:80"
+    restart: always
+
 networks:
   backend:
     driver: bridge
